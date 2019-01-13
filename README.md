@@ -9,6 +9,10 @@ Open source Blockchain implementation for TypeScript.
 - `npm install`
 - `npm install grunt -g`
 
+# To Build
+
+Run `npm run build`
+
 # Running Tests
 
 Run `npm test`
