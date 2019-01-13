@@ -33,6 +33,7 @@
   "homepage": "https://github.com/doriansmiley/bitid-me-blockchain#readme",
   "dependencies": {},
   "devDependencies": {
+    "@types/node": "^10.12.18",
     "awesome-typescript-loader": "^3.1.2",
     "chai": "^3.5.0",
     "grunt": "^1.0.1",
