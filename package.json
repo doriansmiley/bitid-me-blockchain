@@ -1,0 +1,45 @@
+{
+  "name": "bitid-me-blockchain",
+  "version": "0.0.01",
+  "description": "Open source Blockchain implementation for TypeScript",
+  "main": "lib/index.js",
+  "directories": {
+    "example": "example",
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "clean-dist": "rimraf ./lib/*",
+    "prebuild": "npm run clean-dist",
+    "postbuild": "typedoc --out lib/docs",
+    "build": "tsc",
+    "test": "sh ./scripts/testSauce.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doriansmiley/bitid-me-blockchain.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "bitid",
+    "BitIdMe",
+    "blockchain"
+  ],
+  "author": "Dorian Smiley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doriansmiley/bitid-me-blockchain/issues"
+  },
+  "homepage": "https://github.com/doriansmiley/bitid-me-blockchain#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.1.2",
+    "chai": "^3.5.0",
+    "grunt": "^1.0.1",
+    "grunt-mocha-test": "^0.13.2",
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.1",
+    "typedoc": "^0.14.1",
+    "typescript": "^3.2.2"
+  }
+}
