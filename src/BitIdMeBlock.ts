@@ -8,22 +8,17 @@ import {UuidUtils} from "./UuidUtils";
 export class BitIdMeBlock extends Block {
 
     private _transactionId: string;
-    private _signature: string;
 
     constructor(index:number, timestamp:number, previousHash:string, data:string, createHash:(algorithm:string, options?:stream.TransformOptions) => crypto.Hash, algorithm:string = 'sha256', transactionId: string = UuidUtils.generateUUID()) {
         super(index, timestamp, previousHash, data, createHash, algorithm);
         this._transactionId = transactionId;
-        crypto.generateKeyPair
     }
 
     get transactionId():string {
         return this._transactionId;
     }
 
-    get signature():string {
-        return this._signature;
-    }
-
+    // BitIDMe is a centralized database, so we don't need to elect leaders using PoW or PoS
     public mineBlock(difficulty:number):void {
 
     }

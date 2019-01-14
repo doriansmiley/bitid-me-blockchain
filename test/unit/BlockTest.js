@@ -17,6 +17,10 @@ describe('Block', function(){
         (block.timestamp).should.equal(timestamp);
         (block.data).should.equal(data);
         (block.hash).should.equal( BitId.Block.calculateHash(block, crypto.createHash));
+        ('00000').should.equal( BitId.Block.zeros(5));
+        //this._index.toString() + this._timestamp.toString() + this._previousHash + this._data + this._nonce.toString();
+        (index.toString() + timestamp.toString()+previousHash+data.toString()+block._nonce.toString()).should.equal(block.str());
+        ('{"block":0,"previousHash":"'+previousHash+'","timestamp":'+timestamp+',"data":"'+data+'","hash":"'+block.hash+'"}').should.equal(block.toString());
     });
 
 });
