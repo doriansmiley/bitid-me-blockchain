@@ -1,14 +1,13 @@
 'use strict';
 var crypto = require('crypto');
 var should = require('chai').should();
-var BitId = require('../../lib/Block');
+var BitId = require('../../lib/UuidUtils');
 var path = require('path');
 
 describe('Block', function(){
 
     it('should test default Block constructor', function() {
-        var bock = new BitId.Block();
-        (bock instanceof BitId.Block).should.equal(true);
+        (BitId.UuidUtils.generateUUID().length).should.equal(36);
     });
 
 });

@@ -5,57 +5,57 @@ import * as crypto from 'crypto';
 import * as stream from 'stream';
 
 export class Block {
-    private index:number;
-    private timestamp:number;
-    private hash:string;
-    private previousHash:string;
-    private data:string;
-    private nonce:number;
-    private createHash:(algorithm:string, options?:stream.TransformOptions) => crypto.Hash;
-    private algorithm:string;
+    private _index:number;
+    private _timestamp:number;
+    private _hash:string;
+    private _previousHash:string;
+    private _data:string;
+    private _nonce:number;
+    private _createHash:(algorithm:string, options?:stream.TransformOptions) => crypto.Hash;
+    private _algorithm:string;
 
     constructor(index:number, timestamp:number, previousHash:string, data:string, createHash:(algorithm:string, options?:stream.TransformOptions) => crypto.Hash, algorithm:string = 'sha256') {
-        this.index = index;
-        this.timestamp = timestamp;
-        this.previousHash = previousHash;
-        this.data = data;
-        this.nonce = 0;
-        this.createHash = createHash;
-        this.algorithm = algorithm;
-        this.hash = Block.calculateHash(this, this.createHash, this.algorithm);
+        this._index = index;
+        this._timestamp = timestamp;
+        this._previousHash = previousHash;
+        this._data = data;
+        this._nonce = 0;
+        this._createHash = createHash;
+        this._algorithm = algorithm;
+        this._hash = Block.calculateHash(this, this._createHash, this._algorithm);
     }
 
-    public getIndex():number {
-        return this.index;
+    public get index():number {
+        return this._index;
     }
 
-    public getTimestamp():number {
-        return this.timestamp;
+    public get timestamp():number {
+        return this._timestamp;
     }
 
-    public getHash():string {
-        return this.hash;
+    public get hash():string {
+        return this._hash;
     }
 
-    public getPreviousHash():string {
-        return this.previousHash;
+    public get previousHash():string {
+        return this._previousHash;
     }
 
-    public getData():string {
-        return this.data;
+    public get data():string {
+        return this._data;
     }
 
     public str():string {
-        return this.index.toString() + this.timestamp.toString() + this.previousHash + this.data + this.nonce.toString();
+        return this._index.toString() + this._timestamp.toString() + this._previousHash + this._data + this._nonce.toString();
     }
 
     public toString():string {
         return JSON.stringify({
-            block: this.index,
-            previousHash: this.previousHash,
-            timestamp: this.timestamp,
-            data: this.data,
-            hash: this.hash,
+            block: this._index,
+            previousHash: this._previousHash,
+            timestamp: this._timestamp,
+            data: this._data,
+            hash: this._hash,
         })
     }
 
@@ -84,11 +84,11 @@ export class Block {
     }
 
     public mineBlock(difficulty:number):void {
-        this.nonce = 0;
+        this._nonce = 0;
 
-        while (this.getHash().substring(0, difficulty) !== (Block.zeros(difficulty))) {
-            this.nonce++;
-            this.hash = Block.calculateHash(this, this.createHash, this.algorithm);
+        while (this._hash.substring(0, difficulty) !== (Block.zeros(difficulty))) {
+            this._nonce++;
+            this._hash = Block.calculateHash(this, this._createHash, this._algorithm);
         }
     }
 }
