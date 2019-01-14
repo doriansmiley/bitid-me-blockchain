@@ -6,15 +6,24 @@ Open source Blockchain implementation for TypeScript. This is based on https://m
 
 We have added some subclasses used in BitIdMe workflows to allow for request signing.
 
-In order to append a block to a chain you need to have the transaction’s private key. This private key is created when the transaction is initiated by the requestor. Both users are required to be BitIdMe users and be logged in to initiate an exchange. Transaction keys are stored in the user’s KMS key store and linked via the transaction ID. These keys do not rotate. The requestor and requestee have different keys.
+# BitIdMe Exchanges
 
-When a logged in user creates a new transaction the private key is sent back to the client and used to create the new blocks signature which is an hmac hex digest of the new blocks str() method.
+BitIdMe allows anonymous exchanges where neither party is a registered user.
+In order to append a block to a chain you need to have the transaction’s private key.
+This private key is created client side by the BitIdMe app and shown to the requestor.
+The requestor must secure the key and give it to the requestee who also must secure the key.
+BitIdMe persists the private key to KMS usng the transactionID as the identifier.
+To append to the chain you must submit an hmac hex digest of the public transaction ID and the transaction's PWD.
 
-When a request to append a block is received the service must
+When an anonymous request to append a block is received the service must
 
-* Get the KMS key for this transaction for the logged in user
-* Sign the incoming block’s data using the key
-* Verify the signatures match. This way we can leave the route to append blocks public behaind AWS Cognito’s IAM authorizers.
+* Get the KMS key for this transaction using the transactionId from KMS. This key could in theory rotate but we won't be doing that.
+* Sign the incoming block’s data using the key.
+* Verify the new block signature match the newly created hex digest.
+
+Registered users of BitId can enjoy the benefot of not having to enter the request PWD, or capture it if they intiate a request
+Once the user logs in they are can retrieve the private key for a transaction usimg the API
+The key is then used to sign the request. This all happens automatically without any need for the user to input anything
 
 # Set Up
 
