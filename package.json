@@ -13,7 +13,7 @@
     "prebuild": "npm run clean-dist",
     "postbuild": "typedoc --out lib/docs",
     "build": "tsc",
-    "test": "sh ./scripts/testSauce.sh"
+    "test": "npm run build && sh ./scripts/testSauce.sh"
   },
   "repository": {
     "type": "git",
