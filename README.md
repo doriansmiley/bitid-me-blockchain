@@ -22,7 +22,8 @@ When an anonymous request to append a block is received the service must
 * Verify the new block signature match the newly created hex digest.
 
 Registered users of BitId can enjoy the benefot of not having to enter the request PWD, or capture it if they intiate a request
-Once the user logs in they are can retrieve the private key for a transaction usimg the API
+Once the user logs in they are can retrieve the private key for a transaction using the API. The API validates the user has access to the transaction
+using the transaction database.
 The key is then used to sign the request. This all happens automatically without any need for the user to input anything
 
 # Set Up
