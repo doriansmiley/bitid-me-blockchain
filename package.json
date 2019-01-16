@@ -31,7 +31,10 @@
     "url": "https://github.com/doriansmiley/bitid-me-blockchain/issues"
   },
   "homepage": "https://github.com/doriansmiley/bitid-me-blockchain#readme",
-  "dependencies": {},
+  "dependencies": {
+    "bip39": "^2.5.0",
+    "bitcoinjs-lib": "^4.0.2"
+  },
   "devDependencies": {
     "@types/node": "^10.12.18",
     "awesome-typescript-loader": "^3.1.2",
