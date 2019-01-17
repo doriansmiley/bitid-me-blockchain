@@ -4,3 +4,5 @@
 export * from './Block';
 export * from './BlockChain';
 export * from './UuidUtils';
+export * from './Wallet';
+export * from './ECPair';
